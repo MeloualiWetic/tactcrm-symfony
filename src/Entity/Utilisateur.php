@@ -234,4 +234,10 @@ class Utilisateur implements UserInterface
 
         return $this;
     }
+    /**
+     * @return string
+     */
+    public function __toString(){
+        return $this->nom;
+    }
 }
