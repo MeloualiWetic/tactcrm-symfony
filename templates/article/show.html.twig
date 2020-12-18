@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+    <div class="container-fluid dashboard-div">
+        <div class="row top-actions">
+            <div class="col-8 top-header">
+                <h4>Article</h4>
+            </div>
+
+        </div>
+
+        <table class="table">
+            <tbody>
+
+            <tr>
+                <th>Designation</th>
+                <td>{{ article.designation }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ article.prix }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        {# <a href="{{ path('article_index') }}">back to list</a> #}
+
+        {# <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a> #}
+
+        <a class="btn btn-danger" href="{{ path('article_index') }}"><i class="fas fa-chevron-circle-left"></i></a>
+        <div style="float: right;" class="col-2 actions text-right">
+            <a class="btn btn-warning" href="{{ path('article_edit', {'id': article.id}) }}"><i
+                        class="fas fa-edit"></i></a>
+        </div>
+    </div>
+{% endblock %}

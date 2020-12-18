@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DetailFacture index{% endblock %}
+
+{% block body %}
+    <h1>DetailFacture index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DesignationProduit</th>
+                <th>Qte</th>
+                <th>PrixVente</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for detail_facture in detail_factures %}
+            <tr>
+                <td>{{ detail_facture.id }}</td>
+                <td>{{ detail_facture.designationProduit }}</td>
+                <td>{{ detail_facture.qte }}</td>
+                <td>{{ detail_facture.prixVente }}</td>
+                <td>
+                    <a href="{{ path('detail_facture_show', {'id': detail_facture.id}) }}">show</a>
+                    <a href="{{ path('detail_facture_edit', {'id': detail_facture.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('detail_facture_new') }}">Create new</a>
+{% endblock %}

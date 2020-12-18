@@ -1,20 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UtilisateurController!{% endblock %}
+{% block title %}Utilisateur index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container-fluid dashboard-div">
+        <br>
+        <div class="row top-actions">
+            <div class="col-8 top-header">
+                <h4>Liste des Clients</h4>
+            </div>
+            <div class="col-4 actions text-right">
+                <a class="btn btn-primary" href="{{ path('utilisateur_new') }}"><i class="fas fa-plus"></i></a>
+            </div>
+        </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+        <br>
+        <div>
+            {% if(errorMsg != " ") %}
+                <div class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> {{ errorMsg }}
+                </div>
+            {% endif %}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/DEV_PHP/tactcrm/src/Controller/UtilisateurController.php'|file_link(0) }}">src/Controller/UtilisateurController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/DEV_PHP/tactcrm/templates/utilisateur/index.html.twig'|file_link(0) }}">templates/utilisateur/index.html.twig</a></code></li>
-    </ul>
-</div>
+        </div>
+        <div class="card-body">
+            <table id="utilisateur-table" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    {# <th>Id</th> #}
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Email</th>
+                    <th>Telephone</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for utilisateur in utilisateurs %}
+                    <tr>
+                        {# <td>{{ utilisateur.id }}</td> #}
+                        <td>{{ utilisateur.nom }}</td>
+                        <td>{{ utilisateur.prenom }}</td>
+                        <td>{{ utilisateur.email }}</td>
+                        <td>{{ utilisateur.telephone }}</td>
+                        <td>
+                            <a href="{{ path('utilisateur_show', {'id': utilisateur.id}) }}" class="btn btn-info"><i
+                                        class="fas fa-eye"></i></a>
+                            <a href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}" class="btn btn-warning"><i
+                                        class="fas fa-edit"></i></a>
+                            {{ include('utilisateur/_delete_form.html.twig') }}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">Aucun enregistrement trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}

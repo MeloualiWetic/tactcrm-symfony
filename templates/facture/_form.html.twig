@@ -1,0 +1,148 @@
+
+{{ form_start(form) }}
+<style>
+    tr td:not(.td-not-hide):nth-child(5) {
+        display: none;
+    }
+
+    table.table th:nth-child(1), table.table td:nth-child(1) {
+        display: none;
+    }
+</style>
+<div class="container-fluid dashboard-div">
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+            {{ form_row(form.utilisateur) }}
+        </div>
+        <div class="col-lg-6 col-sm-12">
+            {{ form_row(form.numero,{ 'label': 'Reference'}) }}
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+            {{ form_row(form.dateFacturation) }}
+        </div>
+        <div class="material-switch col-lg-6 col-sm-12">
+            <label>Statut de paiement</label>
+            {{ form_row(form.statut) }}
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            {{ form_row(form.description) }}
+        </div>
+
+    </div>
+
+
+    <br>
+    <h4 style="margin-left: 1.5%;">Details Facture</h4>
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <select style=" margin-left: 3%;" id="articles-list" class="selectpicker form-control">
+                <option>Selectionnez un Article</option>
+                {% for article in listarticles %}
+
+                    <option value="{{ article.id }}">{{ article.designation }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <br>
+        <div class="card-body">
+            <table class="table table-bordered table-hover table-responsive"  >
+                <thead>
+                <tr>
+                    <th>
+
+                    </th>
+
+                    <th>
+                        Designation
+                    </th>
+                    <th>
+                        Quantité
+                    </th>
+                    <th>
+                        Prix
+                    </th>
+
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+                </thead>
+
+
+                <tbody id="detail_list"
+                       data-prototype="{{ form_widget(form.detailFactures.vars.prototype)|e('html_attr') }}">
+                <tr>
+                    <td class="td-not-hide">
+                        <input id="article-id" class="form-control " type="hidden">
+                    </td>
+                    <td class="td-not-hide">
+                        <input id="article-libelle" class="form-control" type="text">
+                    </td>
+                    <td class="td-not-hide">
+                        <input id="article-qte" class="form-control" type="number">
+                    </td>
+                    <td class="td-not-hide">
+                        <input id="article-frais" class="form-control" type="number">
+                    </td>
+
+                    <td class="td-not-hide">
+                        <a style="float: right" href="#" class="btn btn-info" id="new-row">Ajouter a la selection</a>
+                    </td>
+                </tr>
+                {% for row in form.detailFactures %}
+                    <tr class="detail-facture">
+                        <td>
+                            {# {{ form_row(row.id) }} #}
+                        </td>
+                        <td>
+                            {{ form_row(row.designationProduit) }}
+                        </td>
+                        <td>
+                            {{ form_row(row.qte,{'type':'number'}) }}
+                        </td>
+
+                        <td>
+                            {{ form_row(row.prixVente,{'type':'number'}) }}
+                        </td>
+                        <td>
+                            {{ form_row(row.article) }}
+                        </td>
+                        <td>
+                            <a style="float: right"  href="{{ path('detail_facture_delete', {'id': row.vars.value.id}) }}"
+                               class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {{ form_widget(form) }}
+
+
+    <div style="float: right;" class="col-2 actions text-right">
+        <br>
+        <button class="btn btn-primary"><i class="far fa-save"></i></button>
+    </div>
+
+</div>
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+
+<!-- DataTables -->
+<script src="{{ asset('plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+
+{{ form_end(form) }}
+
+

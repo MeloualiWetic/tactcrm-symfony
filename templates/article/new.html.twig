@@ -1,0 +1,22 @@
+
+{#-----------------------------------------------------------#}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer Article{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row top-actions">
+            <div class="col-8 top-header">
+                <h4>Créer Article</h4>
+            </div>
+
+        </div>
+
+        {{ include('article/_form.html.twig') }}
+
+        <a class="btn btn-danger href="{{ path('article_index') }}"><i class="fas fa-chevron-circle-left"></i></a>
+
+    </div>
+{% endblock %}

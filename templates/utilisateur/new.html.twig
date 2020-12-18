@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Utilisateur{% endblock %}
+
+{% block body %}
+    <br>
+    <div class="container-fluid dashboard-div">
+        <div class="row top-actions">
+            <div class="col-8 top-header">
+                <h4>Créer client</h4>
+            </div>
+        </div>
+        <br>
+        {{ include('utilisateur/_form.html.twig') }}
+
+        <a class="btn btn-danger" href="{{ path('utilisateur_index') }}"><i class="fas fa-chevron-circle-left"></i></a>
+    </div>
+{% endblock %}

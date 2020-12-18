@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DetailFacture{% endblock %}
+
+{% block body %}
+    <h1>DetailFacture</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ detail_facture.id }}</td>
+            </tr>
+            <tr>
+                <th>DesignationProduit</th>
+                <td>{{ detail_facture.designationProduit }}</td>
+            </tr>
+            <tr>
+                <th>Qte</th>
+                <td>{{ detail_facture.qte }}</td>
+            </tr>
+            <tr>
+                <th>PrixVente</th>
+                <td>{{ detail_facture.prixVente }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('detail_facture_index') }}">back to list</a>
+
+    <a href="{{ path('detail_facture_edit', {'id': detail_facture.id}) }}">edit</a>
+
+    {{ include('detail_facture/_delete_form.html.twig') }}
+{% endblock %}

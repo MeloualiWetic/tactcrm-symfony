@@ -1,0 +1,15 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer Facture{% endblock %}
+
+{% block body %}
+    <div class="container-fluid dashboard-div">
+        <h1>Editer Facture</h1>
+
+        {{ include('facture/_form.html.twig', {'button_label': 'Editer'}) }}
+        <br>
+        <a class="btn btn-danger" href="{{ path('facture_index') }}"><i class="fas fa-chevron-circle-left"></i></a>
+
+    </div>
+{% endblock %}

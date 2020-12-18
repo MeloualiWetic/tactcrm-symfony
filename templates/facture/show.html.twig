@@ -72,12 +72,11 @@
 
 
 
-        <a class="btn btn-danger" href="{{ path('client_viewn') }}"><i class="fas fa-chevron-circle-left"></i></a>
+        <a class="btn btn-danger" href="{{ path('facture_index') }}"><i class="fas fa-chevron-circle-left"></i></a>
         <div style="float: right;" class="col-2 actions text-right">
-{#            <a class="btn btn-warning" href="{{ path('facture_edit', {'id': facture.id}) }}"><i#}
-{#                        class="fas fa-edit"></i></a>#}
+            <a class="btn btn-warning" href="{{ path('facture_edit', {'id': facture.id}) }}"><i
+                        class="fas fa-edit"></i></a>
         </div>
-
 
     </div>
 {% endblock %}
