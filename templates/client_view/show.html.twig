@@ -1,0 +1,85 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Consultation{% endblock %}
+
+{% block body %}
+    <div class="container-fluid dashboard-div">
+        <h2>Facture</h2>
+        <br>
+
+        <div class="row">
+            <div class="col-md-6">
+                <label>Client : </label>
+                {{ facture.utilisateur.nom }} {{ facture.utilisateur.prenom }}
+            </div>
+            <div class="col-md-6">
+                <label>Réference : </label>
+                {{ facture.numero }}
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Date Début : </label>
+                {{ facture.dateFacturation ? facture.dateFacturation|date('d-m-Y ') : '' }}
+            </div>
+            <div class="col-md-6 ">
+                <label>Statut de paiement : </label>
+                {{ facture.statut ? 'Payé' : 'Non Payé' }}
+            </div>
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-6">
+                <label>Description: </label>
+                <td>{{ facture.description }}</td>
+            </div>
+
+        </div>
+        <br>
+        <h4>Details Facture</h4>
+
+        <table class="table">
+            <th>
+                Designation
+            </th>
+            <th>
+                Quantité
+            </th>
+            <th>
+                Prix
+            </th>
+
+            </tr>
+            {% for row in facture.detailFactures %}
+            <tr>
+
+                <td>
+                    {{ row.article }}
+                </td>
+                <td>
+                    {{ row.qte }}
+                </td>
+                <td>
+                    {{ row.prixVente }}
+                </td>
+
+                {% endfor %}
+            </tr>
+        </table>
+
+        {# <a  href="{{ path('consultation_index') }}">back to list</a> #}
+
+        {# <a href="{{ path('consultation_edit', {'id': consultation.id}) }}">edit</a> #}
+
+        <a class="btn btn-danger" href="{{ path('facture_index') }}"><i class="fas fa-chevron-circle-left"></i></a>
+        <div style="float: right;" class="col-2 actions text-right">
+            <a class="btn btn-warning" href="{{ path('facture_edit', {'id': facture.id}) }}"><i
+                        class="fas fa-edit"></i></a>
+        </div>
+
+        {# {{ include('consultation/_delete_form.html.twig') }} #}
+    </div>
+{% endblock %}
