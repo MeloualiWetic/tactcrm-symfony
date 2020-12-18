@@ -36,6 +36,34 @@ class UtilisateurRepository extends ServiceEntityRepository implements PasswordU
         $this->_em->flush();
     }
 
+    /**
+     * @return Utilisateur[] Returns an array of Utilisateur objects
+     */
+
+    public function countUtilisateurs()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('count(u.id)')
+            ->where('u.roles != :role')
+            ->setParameter('role', '["ROLE_ADMIN"]')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
+    public function findAllClients()
+    {
+        return $this->createQueryBuilder('p')
+//            ->select('c')
+            ->andWhere('p.roles != :val')
+            ->setParameter('val', '["ROLE_ADMIN"]')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
+
     // /**
     //  * @return Utilisateur[] Returns an array of Utilisateur objects
     //  */
