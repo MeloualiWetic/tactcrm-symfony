@@ -31,13 +31,23 @@ class Facture
     private $numero;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $statut;
+
+    /**
+     * @ORM\Column(type="text", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Utilisateur::class, inversedBy="factures")
      * @ORM\JoinColumn(nullable=false)
      */
     private $utilisateur;
 
     /**
-     * @ORM\OneToMany(targetEntity=DetailFacture::class, mappedBy="facture", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=DetailFacture::class, mappedBy="facture", cascade={"persist","remove"})
      */
     private $detailFactures;
 
@@ -116,4 +126,37 @@ class Facture
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getStatut()
+    {
+        return $this->statut;
+    }
+
+    /**
+     * @param mixed $statut
+     */
+    public function setStatut($statut): void
+    {
+        $this->statut = $statut;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description): void
+    {
+        $this->description = $description;
+    }
+
 }

@@ -19,6 +19,73 @@ class FactureRepository extends ServiceEntityRepository
         parent::__construct($registry, Facture::class);
     }
 
+
+
+    /**
+     * @return Facture[] Returns an array of Facture objects
+     */
+
+    public function countFacture()
+    {
+        return $this->createQueryBuilder('f')
+            ->select('count(f.id)')
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
+
+    public function countFactureNoPaye()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->andWhere('c.statut = :val')
+            ->setParameter('val', 0)
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
+    public function countFacturePaye()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id)')
+            ->andWhere('c.statut = :val')
+            ->setParameter('val', 1)
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
+
+    /**
+     * @return Facture[] Returns an array of Facture objects
+     */
+    public function countFactureByMonth()
+    {
+        return $this->createQueryBuilder('c')
+            ->select('count(c.id) as count,MONTH(c.dateFacturation) as byMonth')
+            ->groupBy('byMonth')
+            ->getQuery()
+            ->getOneOrNullResult()
+            ;
+    }
+
+    /**
+     * @return Facture[] Returns an array of facture objects
+     */
+    public function findFacturesByUtilisateur($value)
+    {
+        return $this->createQueryBuilder('f')
+//            ->select('c')
+            ->andWhere('f.utilisateur = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+
     // /**
     //  * @return Facture[] Returns an array of Facture objects
     //  */
