@@ -4,8 +4,11 @@ namespace App\Entity;
 
 use App\Repository\DetailFactureRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=DetailFactureRepository::class)
  * @ORM\Table(name="details_facture")
  */
