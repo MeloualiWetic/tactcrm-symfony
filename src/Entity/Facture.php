@@ -6,8 +6,11 @@ use App\Repository\FactureRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+
 
 /**
+ * @ApiResource()
  * @ORM\Entity(repositoryClass=FactureRepository::class)
  * @ORM\Table(name="factures")
  */
