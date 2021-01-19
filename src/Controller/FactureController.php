@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Facture;
 use App\Form\FactureType;
 use App\Repository\ArticleRepository;
+use App\Repository\DetailFactureRepository;
 use App\Repository\FactureRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,6 +59,7 @@ class FactureController extends AbstractController
      */
     public function show(Facture $facture): Response
     {
+
         return $this->render('facture/show.html.twig', [
             'facture' => $facture,
         ]);
