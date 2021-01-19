@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FACTURE {{ facture.numero }}</title>
+
+    <style type="text/css">
+        * {
+            font-family: Verdana, Arial, sans-serif;
+        }
+
+        table {
+            font-size: x-small;
+        }
+
+        tfoot tr td {
+            font-weight: bold;
+            font-size: x-small;
+        }
+
+        .gray {
+            background-color: lightgray
+        }
+    </style>
+
+</head>
+<body>
+
+<table width="100%">
+    <tr>
+        <td style="float:left;display:inline-block"><img src="https://www.digitar.be/wp-content/uploads/2017/11/logoWin10-1.png" alt="" width="100"/> <h3>WETIC </h3> </td>
+        <td align="right" style="  display:inline-block">
+            <h1 > FACTURE </h1>
+            <p>{{ facture.numero }}
+            <br>
+                                        {% if(facture.statut) %}
+                                <span style="color: #639439; margin-top:0;">Payé</span>
+                            {% else %}
+                                <span style="color: #C6631F; margin-top:0;">Non Payé</span>
+                            {% endif %}
+            </p>
+             <pre>
+            <h3 >   {{ facture.utilisateur.nom }} {{ facture.utilisateur.prenom }}</h3>
+            {{ facture.utilisateur.adresse.numero }} {{ facture.utilisateur.adresse.rue }}
+            {{ facture.utilisateur.adresse.codePostal }} {{ facture.utilisateur.adresse.ville }}
+            {{ facture.utilisateur.adresse.pays }}
+            </pre>
+            
+            <pre>
+              <label>Date Début : </label>  {{ facture.dateFacturation ? facture.dateFacturation|date('d-m-Y ') : '' }}
+            </pre>
+        </td>
+    </tr>
+
+</table>
+
+
+<table width="100%">
+    <thead style="background-color: lightgray;">
+    <tr>
+        <th>
+            Designation
+        </th>
+        <th>
+            Quantité
+        </th>
+        <th>
+            Prix
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for row in detailsfacture %}
+    <tr>
+
+        <td>
+            {{ row.article }}
+        </td>
+        <td>
+            {{ row.qte }}
+        </td>
+        <td>
+            {{ row.prixVente }}
+        </td>
+
+        {% endfor %}
+    </tr>
+</table>
+
+</body>
+</html>
+
