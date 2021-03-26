@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devise
+{% endblock %}
+
+{% block body %}
+	<h1>Devise</h1>
+	<div class="container-fluid dashboard-div">
+		<div class="row top-actions">
+			<div class="col-8 top-header">
+				<h4>Taxe</h4>
+			</div>
+
+		</div>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Nom</th>
+					<td>{{ devise.nom }}</td>
+				</tr>
+				<tr>
+					<th>Symbole</th>
+					<td>{{ devise.symbole }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+<a class="btn btn-danger" href="{{ path('devise_index') }}"><i class="fas fa-chevron-circle-left"></i></a>
+        <div style="float: right;" class="col-2 actions text-right">
+            <a class="btn btn-warning" href="{{ path('devise_edit', {'id': devise.id}) }}"><i
+                        class="fas fa-edit"></i></a>
+        </div>
+
+	</div>
+{% endblock %}

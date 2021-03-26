@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Devise index
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<br>
+		<div class="row top-actions">
+			<div class="col-8 top-header">
+				<h4>Liste des Devises</h4>
+			</div>
+			<div class="col-4 actions text-right">
+				<a class="btn btn-primary" href="{{ path('devise_new') }}">
+					<i class="fas fa-plus"></i>
+				</a>
+			</div>
+		</div>
+		<div class="card-body">
+			<table class="table table-bordered table-hover respensive-tbls">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Symbole</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for devise in devises %}
+						<tr>
+							<td>{{ devise.nom }}</td>
+							<td>{{ devise.symbole }}</td>
+							<td>
+
+								<a class="btn btn-info" href="{{ path('devise_show', {'id': devise.id}) }}">
+									<i class="fas fa-eye"></i>
+								</a>
+								<a class="btn btn-warning" href="{{ path('devise_edit', {'id': devise.id}) }}">
+									<i class="fas fa-edit"></i>
+								</a>
+								{{ include('devise/_delete_form.html.twig') }}
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="4">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+            </div>
+		</div>
+	{% endblock %}

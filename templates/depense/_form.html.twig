@@ -1,0 +1,48 @@
+{{ form_start(form) }}
+<div class="container-fluid dashboard-div">
+	<div class="row">
+		<div class="col-lg-6 col-sm-12">
+			{{ form_row(form.nom) }}
+		</div>
+		<div class="col-lg-6 col-sm-12">
+			{{ form_row(form.dateDepense,{ 'label': 'Date Depense'}) }}
+		</div>
+
+	</div>
+	<div class="row">
+		<div class="col-lg-6 col-sm-12">
+			{{ form_row(form.nontant,{'type':'number'}) }}
+		</div>
+		<div class="col-lg-6 col-sm-12">
+			{{ form_row(form.devise) }}
+		</div>
+    
+	</div>
+
+	<div class="row">
+		<div class="col-lg-6 col-sm-12">
+			{{ form_row(form.typePaiement) }}
+		</div>
+		<div class="col-lg-6 col-sm-12">
+			{{ form_row(form.typeDepense) }}
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12">
+			{{ form_row(form.description ) }}
+		</div>
+
+
+	</div>
+
+	{{ form_widget(form) }}
+	<div style="float: right;" class="col-2 actions text-right">
+		<br>
+		<button class="btn btn-primary">
+			<i class="far fa-save"></i>
+		</button>
+	</div>
+</div>
+{{ form_end(form) }}
