@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une Contrat
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid dashboarsd-div">
+
+		<h1>Créer une Contrat</h1>
+
+		{{ include('contrat/_form.html.twig') }}
+
+        <a  class="btn btn-danger" href="{{ path('contrat_index') }}"><i class="fas fa-chevron-circle-left"></i></a>
+
+	</div>
+
+{% endblock %}

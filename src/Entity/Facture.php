@@ -54,6 +54,18 @@ class Facture
      */
     private $detailFactures;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=TypePaiement::class, inversedBy="factures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $typePaiement;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Devise::class, inversedBy="factures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $devise;
+
     public function __construct()
     {
         $this->detailFactures = new ArrayCollection();
@@ -160,6 +172,30 @@ class Facture
     public function setDescription($description): void
     {
         $this->description = $description;
+    }
+
+    public function getTypePaiement(): ?TypePaiement
+    {
+        return $this->typePaiement;
+    }
+
+    public function setTypePaiement(?TypePaiement $typePaiement): self
+    {
+        $this->typePaiement = $typePaiement;
+
+        return $this;
+    }
+
+    public function getDevise(): ?Devise
+    {
+        return $this->devise;
+    }
+
+    public function setDevise(?Devise $devise): self
+    {
+        $this->devise = $devise;
+
+        return $this;
     }
 
 }

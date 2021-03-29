@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Taxe
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid">
+		<div class="row top-actions">
+			<div class="col-8 top-header">
+				<h4>Editer Article</h4>
+			</div>
+
+		</div>
+
+    {{ include('devise/_form.html.twig', {'button_label': 'Editer'}) }}
+
+		<a class="btn btn-danger" href="{{ path('devise_index') }}">
+			<i class="fas fa-chevron-circle-left"></i>
+		</a>
+
+
+	</div>
+{% endblock %}

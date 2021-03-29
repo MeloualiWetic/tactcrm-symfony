@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Depense index
+{% endblock %}
+
+{% block body %}
+	<br>
+	<div class="container-fluid dashboard-div">
+		<div class="row top-actions">
+			<div class="col-8 top-header">
+				<h4>Liste des Depenses</h4>
+			</div>
+			<div class="col-4 actions text-right">
+				<a class="btn btn-primary" href="{{ path('depense_new') }}">
+					<i class="fas fa-plus"></i>
+				</a>
+			</div>
+		</div>
+
+		<br>
+        <div class="card-body">
+		<table class="table respensive-tbls table table-bordered">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Date Depense</th>
+					<th>Nontant</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for depense in depenses %}
+					<tr>
+						<td>{{ depense.nom }}</td>
+						<td>{{ depense.dateDepense ? depense.dateDepense|date('Y-m-d') : '' }}</td>
+						<td>{{ depense.nontant }}</td>
+						<td>
+
+							<a class="btn btn-info" href="{{ path('depense_show', {'id': depense.id}) }}">
+								<i class="fas fa-eye"></i>
+							</a>
+							<a class="btn btn-warning" href="{{ path('depense_edit', {'id': depense.id}) }}">
+								<i class="fas fa-edit"></i>
+							</a>
+							{{ include('depense/_delete_form.html.twig') }}
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">no records found</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+        </div>
+	</div>
+
+{% endblock %}

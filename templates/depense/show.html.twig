@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Depense
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid dashboard-div">
+		<h2>Depense</h2>
+		<br>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Nom</th>
+					<td>{{ depense.nom }}</td>
+				</tr>
+				<tr>
+					<th>DateDepense</th>
+					<td>{{ depense.dateDepense ? depense.dateDepense|date('d-m-Y') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Nontant</th>
+					<td>{{ depense.nontant }}</td>
+				</tr>
+				<tr>
+					<th>Description</th>
+					<td>{{ depense.description }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+        <a class="btn btn-danger" href="{{ path('depense_index') }}"><i class="fas fa-chevron-circle-left"></i></a>
+        <div style="float: right;" class="col-2 actions text-right">
+            <a class="btn btn-warning" href="{{ path('depense_edit', {'id': depense.id}) }}"><i
+                        class="fas fa-edit"></i></a>
+        </div>
+	</dev>
+{% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\DetailFacture;
 use App\Entity\Facture;
 use App\Form\FactureType;
 use App\Repository\ArticleRepository;
@@ -73,7 +74,12 @@ class FactureController extends AbstractController
         $listarticles = $articleRepository->findAll();
         $form = $this->createForm(FactureType::class, $facture);
         $form->handleRequest($request);
+        $detailFacture = $facture->getDetailFactures();
+        $HT = 0;
+        foreach ($detailFacture as $value){
+            $HT += $value->getPrixVente() * $value->getQte();
 
+        }
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -84,6 +90,7 @@ class FactureController extends AbstractController
             'facture' => $facture,
             'form' => $form->createView(),
             'listarticles'=>$listarticles,
+            'HT'=>$HT
         ]);
     }
 

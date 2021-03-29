@@ -38,6 +38,12 @@ class Article
      */
     private $detailFactures;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Taxe::class, inversedBy="articles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $taxe;
+
     public function __construct()
     {
         $this->detailFactures = new ArrayCollection();
@@ -108,6 +114,18 @@ class Article
     public function __toString(){
 
         return $this->designation;
+    }
+
+    public function getTaxe(): ?Taxe
+    {
+        return $this->taxe;
+    }
+
+    public function setTaxe(?Taxe $taxe): self
+    {
+        $this->taxe = $taxe;
+
+        return $this;
     }
 
 }

@@ -70,9 +70,15 @@ class Utilisateur implements UserInterface
      */
     private $factures;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Contrat::class, mappedBy="utilisateur")
+     */
+    private $contrats;
+
     public function __construct()
     {
         $this->factures = new ArrayCollection();
+        $this->contrats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -242,5 +248,35 @@ class Utilisateur implements UserInterface
      */
     public function __toString(){
         return $this->nom;
+    }
+
+    /**
+     * @return Collection|Contrat[]
+     */
+    public function getContrats(): Collection
+    {
+        return $this->contrats;
+    }
+
+    public function addContrat(Contrat $contrat): self
+    {
+        if (!$this->contrats->contains($contrat)) {
+            $this->contrats[] = $contrat;
+            $contrat->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContrat(Contrat $contrat): self
+    {
+        if ($this->contrats->removeElement($contrat)) {
+            // set the owning side to null (unless already changed)
+            if ($contrat->getUtilisateur() === $this) {
+                $contrat->setUtilisateur(null);
+            }
+        }
+
+        return $this;
     }
 }
