@@ -81,7 +81,7 @@ class UtilisateurController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $utilisateur->setIsDeleted(false);
+            // $utilisateur->setIsDeleted(false);
             // encode the plain password
             $utilisateur->setPassword(
                 $passwordEncoder->encodePassword(

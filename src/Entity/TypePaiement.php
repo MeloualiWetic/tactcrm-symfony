@@ -36,9 +36,15 @@ class TypePaiement
      */
     private $depenses;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Facture::class, mappedBy="typePaiement")
+     */
+    private $factures;
+
     public function __construct()
     {
         $this->depenses = new ArrayCollection();
+        $this->factures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -106,5 +112,35 @@ class TypePaiement
     {
 
         return $this->nom;
+    }
+
+    /**
+     * @return Collection|Facture[]
+     */
+    public function getFactures(): Collection
+    {
+        return $this->factures;
+    }
+
+    public function addFacture(Facture $facture): self
+    {
+        if (!$this->factures->contains($facture)) {
+            $this->factures[] = $facture;
+            $facture->setTypePaiement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFacture(Facture $facture): self
+    {
+        if ($this->factures->removeElement($facture)) {
+            // set the owning side to null (unless already changed)
+            if ($facture->getTypePaiement() === $this) {
+                $facture->setTypePaiement(null);
+            }
+        }
+
+        return $this;
     }
 }

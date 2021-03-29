@@ -22,8 +22,8 @@ class DepenseType extends AbstractType
             ->add('nontant')
             ->add('description')
             ->add('devise',EntityType::class,['class'=> 'App\Entity\Devise'] )
-            ->add('typeDepense',EntityType::class,['class'=> 'App\Entity\TypeDepense'] )
             ->add('typePaiement',EntityType::class,['class'=> 'App\Entity\TypePaiement'] )
+            ->add('typeDepense',EntityType::class,['class'=> 'App\Entity\TypeDepense'] )
 
 
         ;

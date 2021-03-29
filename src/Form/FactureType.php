@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class FactureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -30,6 +31,8 @@ class FactureType extends AbstractType
                 'label' => false,
             ])
             ->add('description')
+            ->add('devise',EntityType::class,['class'=> 'App\Entity\Devise'] )
+            ->add('typePaiement',EntityType::class,['class'=> 'App\Entity\TypePaiement'] )
             ->add('detailFactures',  CollectionType::class, [
                 'entry_type' => DetailFactureType::class,
                 'label' => false,

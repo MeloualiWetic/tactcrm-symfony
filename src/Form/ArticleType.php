@@ -6,6 +6,8 @@ use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class ArticleType extends AbstractType
 {
@@ -14,6 +16,8 @@ class ArticleType extends AbstractType
         $builder
             ->add('designation')
             ->add('prix')
+            ->add('taxe',EntityType::class,['class'=> 'App\Entity\Taxe'] )
+
         ;
     }
 
